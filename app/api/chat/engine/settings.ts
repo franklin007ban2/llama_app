@@ -49,7 +49,7 @@ export const initSettings = async () => {
       initAzureOpenAI();
       break;
     default:
-      initOpenAI();
+      initDeepSeek();
       break;
   }
   Settings.chunkSize = CHUNK_SIZE;
@@ -70,6 +70,40 @@ function initOpenAI() {
       : undefined,
   });
 }
+
+function initDeepSeek() {
+  Settings.llm = new OpenAI({
+    apiKey: '',
+    model: 'deepseek-chat',
+    maxTokens: 8192,
+    additionalSessionOptions: {
+      baseURL: 'https://api.deepseek.com'
+    }
+  });
+  Settings.embedModel = new OpenAIEmbedding({
+    apiKey: '',
+    model: 'embedding-3',
+    dimensions: 2048,
+    additionalSessionOptions: {
+      baseURL: 'https://open.bigmodel.cn/api/paas/v4/embeddings'
+    }
+  });
+
+  Settings.embedModel = new OpenAIEmbedding({
+    apiKey: '',
+    model: 'text-embedding-3-large',
+    dimensions: 1024,
+  });
+
+  // Settings.embedModel = new OllamaEmbedding({
+  //   model: "phi3",
+  //   config: {
+  //     host: "http://127.0.0.1:11434",
+  //   }
+  // });
+
+}
+
 
 function initAzureOpenAI() {
   // Map Azure OpenAI model names to OpenAI model names (only for TS)
