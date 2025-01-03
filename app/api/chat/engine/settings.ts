@@ -73,7 +73,7 @@ function initOpenAI() {
 
 function initDeepSeek() {
   Settings.llm = new OpenAI({
-    apiKey: '',
+    apiKey: process.env.DEEPSEEK_API,
     model: 'deepseek-chat',
     maxTokens: 8192,
     additionalSessionOptions: {
@@ -81,19 +81,19 @@ function initDeepSeek() {
     }
   });
   Settings.embedModel = new OpenAIEmbedding({
-    apiKey: '',
+    apiKey: process.env.ZHIPU_API,
     model: 'embedding-3',
     dimensions: 2048,
     additionalSessionOptions: {
-      baseURL: 'https://open.bigmodel.cn/api/paas/v4/embeddings'
+      baseURL: 'https://open.bigmodel.cn/api/paas/v4/'
     }
   });
 
-  Settings.embedModel = new OpenAIEmbedding({
-    apiKey: '',
-    model: 'text-embedding-3-large',
-    dimensions: 1024,
-  });
+  // Settings.embedModel = new OpenAIEmbedding({
+  //   apiKey: '',
+  //   model: 'text-embedding-3-large',
+  //   dimensions: 1024,
+  // });
 
   // Settings.embedModel = new OllamaEmbedding({
   //   model: "phi3",
