@@ -1,5 +1,4 @@
 {
-  "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:dev-20-bullseye",
   "customizations": {
     "codespaces": {
       "openFiles": [
@@ -29,5 +28,5 @@
     3000,
     8000
   ],
-  "postCreateCommand": "npm install"
+  "postCreateCommand": "pnpm install"
 }
